@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Recherche de Cas par Sujet" icon-name="standard:case">
+        <div class="slds-p-around_medium">
+            <lightning-input label="Rechercher par Sujet"
+                             value={searchTerm}
+                             onchange={updateSearchTerm}>
+            </lightning-input>
+            <lightning-button label="Rechercher"
+                              variant="brand"
+                              onclick={handleSearch}
+                              class="slds-m-top_small">
+            </lightning-button>
+        </div>
+
+        <!-- Affichage des résultats -->
+        <template if:true={cases}>
+            <template if:true={cases.length}>
+                <lightning-datatable data={cases}
+                                     columns={columns}
+                                     key-field="Id">
+                </lightning-datatable>
+            </template>
+        </template>
+
+        <!-- Message dynamique pour erreurs ou absence de résultats -->
+        <template if:true={message}>
+            <p class="slds-p-around_medium slds-text-color_error">{message}</p>
+        </template>
+    </lightning-card>
+</template>
