@@ -20,7 +20,6 @@ export default class AccountOpportunitiesViewer extends LightningElement {
   @wire(getOpportunities, { recordId: "$recordId" })
 wiredOpportunities(result) {
   this.wiredOpportunitiesResult = result; // Stocke le résultat du wire
-  console.log("Résultat du wire :", JSON.stringify(result));
   this.isLoading = true;
 
   if (result.data) {
@@ -36,13 +35,10 @@ wiredOpportunities(result) {
 
 
 handleRafraichir() {
-  console.log("Tentative de rafraîchissement...");
-  console.log("Données avant rafraîchissement :", JSON.stringify(this.opportunities));
   this.isLoading = true
 
   if (this.wiredOpportunitiesResult) {
     refreshApex(this.wiredOpportunitiesResult).then(() => {
-      console.log("Données après rafraîchissement :", JSON.stringify(this.opportunities));
       this.isLoading = false
     });
   } else {

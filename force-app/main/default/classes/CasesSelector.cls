@@ -6,7 +6,6 @@ public with sharing class CasesSelector {
             FROM Case 
             WHERE AccountId = :accountId
             AND Subject LIKE :('%' + subjectSearchTerm + '%') 
-            // % = n'importe où
             ORDER BY CreatedDate DESC
             LIMIT 50
         ];
